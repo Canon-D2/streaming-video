@@ -1,0 +1,24 @@
+ffmpeg -i cam-grip-01-test.mp4 ^
+-map 0:v:0 -map 0:a:0 -s:v:0 854x480 -c:v:0 libx264 -b:v:0 1200k -maxrate:v:0 1280k -bufsize:v:0 1600k ^
+-map 0:v:0 -map 0:a:0 -s:v:1 1280x720 -c:v:1 libx264 -b:v:1 1400k -maxrate:v:1 1498k -bufsize:v:1 2100k ^
+-map 0:v:0 -map 0:a:0 -s:v:2 1920x1080 -c:v:2 libx264 -b:v:2 2800k -maxrate:v:2 2996k -bufsize:v:2 4200k ^
+-var_stream_map "v:0,a:0 v:1,a:1 v:2,a:2" ^
+-f hls -hls_time 4 -hls_playlist_type vod ^
+-hls_segment_filename "output_%v_%03d.ts" ^
+-master_pl_name master.m3u8 ^
+output_%v.m3u8
+
+------------------------------------------------------------------
+
+
+ffmpeg -i cam-grip-01-test.mp4 ^
+-map 0:v:0 -map 0:a:0 -s:v:0 256x144 -c:v:0 libx264 -b:v:0 400k -maxrate:v:0 450k -bufsize:v:0 600k ^
+-map 0:v:0 -map 0:a:0 -s:v:1 640x360 -c:v:1 libx264 -b:v:1 800k -maxrate:v:1 850k -bufsize:v:1 1200k ^
+-map 0:v:0 -map 0:a:0 -s:v:2 854x480 -c:v:2 libx264 -b:v:2 1200k -maxrate:v:2 1280k -bufsize:v:2 1600k ^
+-map 0:v:0 -map 0:a:0 -s:v:3 1280x720 -c:v:3 libx264 -b:v:3 2800k -maxrate:v:3 2996k -bufsize:v:3 4200k ^
+-map 0:v:0 -map 0:a:0 -s:v:4 1920x1080 -c:v:4 libx264 -b:v:4 5000k -maxrate:v:4 5500k -bufsize:v:4 7500k ^
+-var_stream_map "v:0,a:0 v:1,a:1 v:2,a:2 v:3,a:3 v:4,a:4" ^
+-f hls -hls_time 4 -hls_playlist_type vod ^
+-hls_segment_filename "output_%v_%03d.ts" ^
+-master_pl_name master.m3u8 ^
+output_%v.m3u8
